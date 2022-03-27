@@ -1,4 +1,4 @@
-# NIMBYRailsModMaker
+# NIMBY Rails Mod Maker
 
 A tool to help with the creation of mods for NIMBY Rails.
 
