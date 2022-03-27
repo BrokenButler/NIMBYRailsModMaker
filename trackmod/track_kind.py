@@ -12,7 +12,7 @@ class TrackKind:
         self.name_loc: str = name_loc
         self.name_en: str = name_en
         self.tags: list[str] | None = tags
-        self.track_layers: list[TrackLayer] = track_layers if track_layers is not None else []
+        self._track_layers: list[TrackLayer] = track_layers if track_layers is not None else []
 
     def __str__(self):
         self.validate()
@@ -27,28 +27,28 @@ class TrackKind:
         if self.tags is not None:
             string += f"tags={self.tags}\n"
         string += f"\n"
-        for tlayer in self.track_layers:
+        for tlayer in self._track_layers:
             string += f"{tlayer}\n"
         return string
 
     def get_track_layer(self, layer: TrackLayers) -> TrackLayer:
-        for tlayer in self.track_layers:
+        for tlayer in self._track_layers:
             if tlayer.layer == layer:
                 return tlayer
         raise ValueError(f"Layer type {layer} not found")
 
     def get_all_track_layers(self) -> list[TrackLayer]:
-        return self.track_layers
+        return self._track_layers
 
     def _remove_track_layer(self, layer: TrackLayers) -> None:
         try:
-            self.track_layers.remove(self.get_track_layer(layer))
+            self._track_layers.remove(self.get_track_layer(layer))
         except ValueError:
             pass
 
     def add_track_layer(self, new_track_layer: TrackLayer) -> None:
         self._remove_track_layer(new_track_layer.layer)
-        self.track_layers.append(new_track_layer)
+        self._track_layers.append(new_track_layer)
 
     def add_track_layers(self, new_track_layers: Iterable[TrackLayer]) -> None:
         for new_track_layer in new_track_layers:

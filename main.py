@@ -1,6 +1,6 @@
 import os
 
-from mod import TrackMod
+from trackmod import TrackMod
 from trackmod.track_kind import TrackKind
 from trackmod.track_layer import TrackLayer
 from utils import TrackLayers

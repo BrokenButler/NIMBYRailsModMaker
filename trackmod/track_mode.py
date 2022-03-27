@@ -40,8 +40,17 @@ class TrackMode:
             raise ValueError("TrackMode.mode is None")
 
 
-def default_track_mode_list(track_kind_id: str, layer: TrackLayers) -> list[TrackMode]:
+def default_track_mode_list(track_kind_id: str, layer: TrackLayers, max_speed: int = None) -> list[TrackMode]:
     track_mode_list = []
+    sleepers = None
     for tm in TrackModes:
-        track_mode_list.append(TrackMode(track_kind_id, layer, tm))
+        if max_speed <= 160:
+            if tm in [TrackModes.BUILT, TrackModes.BUILT_BRANCH, TrackModes.BUILT_DIAMOND]:
+                sleepers = f"@stock/common/sleepers2.png"
+            elif tm in [TrackModes.BLUEPRINT, TrackModes.BLUEPRINT_BRANCH, TrackModes.BLUEPRINT_DIAMOND]:
+                sleepers = f"@stock/common/sleepers2_bp.png"
+            else:
+                sleepers = None
+
+        track_mode_list.append(TrackMode(track_kind_id, layer, tm, sleepers=sleepers))
     return track_mode_list

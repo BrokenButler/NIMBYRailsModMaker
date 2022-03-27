@@ -33,9 +33,9 @@ class TrackLayer:
         self.collides_ways: bool = collides_ways
         self.conflicts_tracks: bool = conflicts_tracks
         if track_modes is not None:
-            self.track_modes = track_modes
+            self._track_modes = track_modes
         else:
-            self.track_modes = default_track_mode_list(track_kind_id, layer)
+            self._track_modes = default_track_mode_list(track_kind_id, layer, max_speed)
 
     def __str__(self):
         self.validate()
@@ -60,28 +60,28 @@ class TrackLayer:
             string += f"collides_ways={self.collides_ways}\n"
         if self.conflicts_tracks is not None:
             string += f"conflicts_tracks={self.conflicts_tracks}\n"
-        for track_mode in self.track_modes:
+        for track_mode in self._track_modes:
             string += f"{track_mode}"
         return string
 
     def get_track_mode(self, mode: TrackModes) -> TrackMode:
-        for tmode in self.track_modes:
+        for tmode in self._track_modes:
             if tmode.mode == mode:
                 return tmode
         raise ValueError(f"Track mode {mode} not found")
 
     def get_all_track_modes(self) -> list[TrackMode]:
-        return self.track_modes
+        return self._track_modes
 
     def _remove_track_mode(self, mode: TrackModes):
         try:
-            self.track_modes.remove(self.get_track_mode(mode))
+            self._track_modes.remove(self.get_track_mode(mode))
         except ValueError:
             pass
 
     def add_mode(self, tmode: TrackMode):
         self._remove_track_mode(tmode.mode)
-        self.track_modes.append(tmode)
+        self._track_modes.append(tmode)
 
     def add_modes(self, track_modes: Iterable[TrackMode]) -> None:
         for tmode in track_modes:
