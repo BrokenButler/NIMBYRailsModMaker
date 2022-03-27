@@ -65,9 +65,9 @@ class TrackLayer:
         return string
 
     def get_track_mode(self, mode: TrackModes) -> TrackMode:
-        for track_mode in self.track_modes:
-            if track_mode.mode == mode:
-                return track_mode
+        for tmode in self.track_modes:
+            if tmode.mode == mode:
+                return tmode
         raise ValueError(f"Track mode {mode} not found")
 
     def get_all_track_modes(self) -> list[TrackMode]:
@@ -79,13 +79,13 @@ class TrackLayer:
         except ValueError:
             pass
 
-    def add_mode(self, track_mode: TrackMode):
-        self._remove_track_mode(track_mode.mode)
-        self.track_modes.append(track_mode)
+    def add_mode(self, tmode: TrackMode):
+        self._remove_track_mode(tmode.mode)
+        self.track_modes.append(tmode)
 
     def add_modes(self, track_modes: Iterable[TrackMode]) -> None:
-        for track_mode in track_modes:
-            self.add_mode(track_mode)
+        for tmode in track_modes:
+            self.add_mode(tmode)
 
     def validate(self):
         if self.track_kind_id is None:

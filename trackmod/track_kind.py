@@ -27,14 +27,14 @@ class TrackKind:
         if self.tags is not None:
             string += f"tags={self.tags}\n"
         string += f"\n"
-        for track_layer in self.track_layers:
-            string += f"{track_layer}\n"
+        for tlayer in self.track_layers:
+            string += f"{tlayer}\n"
         return string
 
     def get_track_layer(self, layer: TrackLayers) -> TrackLayer:
-        for track_layer in self.track_layers:
-            if track_layer.layer == layer:
-                return track_layer
+        for tlayer in self.track_layers:
+            if tlayer.layer == layer:
+                return tlayer
         raise ValueError(f"Layer type {layer} not found")
 
     def get_all_track_layers(self) -> list[TrackLayer]:
