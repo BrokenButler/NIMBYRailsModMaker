@@ -1,7 +1,7 @@
 from collections.abc import Iterable
 
 from trackmod.track_mode import TrackMode, default_track_mode_list
-from enums import TrackLayers, TrackModes
+from utils import TrackLayers, TrackModes
 
 
 class TrackLayer:

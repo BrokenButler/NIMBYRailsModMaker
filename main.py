@@ -3,7 +3,7 @@ import os
 from mod import TrackMod
 from trackmod.track_kind import TrackKind
 from trackmod.track_layer import TrackLayer
-from enums import TrackLayers
+from utils import TrackLayers
 
 
 def main():
@@ -18,8 +18,8 @@ def main():
             tl: TrackLayer = TrackLayer(tk.track_kind_id, layer, max_speed=i, price=1000)
             tk.add_track_layer(tl)
         mod.add_track_kind(tk)
-    os.mkdir(f"{mod.name}")
-    mod.export(file_path=f"./{mod.name}/mod.txt")
+    os.mkdir(f"./output/{mod.name}")
+    mod.export(file_path=f"./output/{mod.name}/mod.txt")
 
 
 if __name__ == '__main__':

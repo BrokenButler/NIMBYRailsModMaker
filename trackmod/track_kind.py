@@ -1,7 +1,7 @@
 from collections.abc import Iterable
 
-from enums import TrackLayers
 from trackmod.track_layer import TrackLayer
+from utils import TrackLayers
 
 
 class TrackKind:
