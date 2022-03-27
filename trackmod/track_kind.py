@@ -1,11 +1,11 @@
 from collections.abc import Iterable
 
-from trackmod.track_layer import TrackLayer
 from enums import TrackLayers
+from trackmod.track_layer import TrackLayer
 
 
 class TrackKind:
-    def __init__(self, track_kind_id: str, name_loc: str, name_en: str, tags: list[TrackLayer] = None,
+    def __init__(self, track_kind_id: str, name_loc: str, name_en: str, tags: list[str] = None,
                  track_layers: list[TrackLayer] = None, schema: int = 1):
         self.schema: int = schema
         self.track_kind_id: str = track_kind_id
