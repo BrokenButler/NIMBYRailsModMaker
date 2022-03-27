@@ -13,12 +13,12 @@ def main():
     id_template = "BB_track_"
     for i in range(10, 601, 10):
         full_id = id_template + str(i)
-        tk: TrackKind = TrackKind(track_kind_id=f"{full_id}", name_loc=f"{full_id}_name", name_en=f"{i}km/h")
+        track_kind: TrackKind = TrackKind(track_kind_id=f"{full_id}", name_loc=f"{full_id}_name", name_en=f"{i}km/h")
         for layer in TrackLayers:
-            tl: TrackLayer = TrackLayer(tk.track_kind_id, layer, max_speed=i, price=1000)
-            tk.add_track_layer(tl)
-        mod.add_track_kind(tk)
-    os.mkdir(f"./output/{mod.name}")
+            track_layer: TrackLayer = TrackLayer(track_kind.track_kind_id, layer, max_speed=i, price=1000)
+            track_kind.add_track_layer(track_layer)
+        mod.add_track_kind(track_kind)
+    os.makedirs(f"./output/{mod.name}", exist_ok=True)
     mod.export(file_path=f"./output/{mod.name}/mod.txt")
 
 
